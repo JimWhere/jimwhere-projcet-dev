@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jimwhere-config
+  namespace: jimwhere
+data:
+  # DB (주소/이름은 환경마다 바뀜)
+  DB_HOST: mariadb
+  DB_PORT: "3306"
+  DB_NAME: jim_where
+
+  # Redis
+  REDIS_HOST: redis
+  REDIS_PORT: "6379"
+
+  # Toss (공개돼도 큰 문제 없음)
+  TOSS_BASE_URL: https://api.tosspayments.com
+  TOSS_SUCCESS_URL: https://jimwhere.local/payments/success
+  TOSS_FAIL_URL: https://jimwhere.local/payments/fail
