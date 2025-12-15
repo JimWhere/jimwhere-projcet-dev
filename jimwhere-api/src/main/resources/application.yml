@@ -1,0 +1,59 @@
+server:
+  port: ${SERVER_PORT:8081}
+
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        dialect: org.hibernate.dialect.MariaDBDialect
+    open-in-view: false
+  
+  sql:
+    init:
+      mode: always
+      encoding: UTF-8
+
+jwt:
+  secret: ${JWT_SECRET}
+  access-expiration: 900000      # 15?
+#  access-expiration: 10000      # 10초
+  refresh-expiration: 259200000   # 3일
+
+auth:
+  code:
+    expiration-millis: 300000
+
+data:
+  go:
+    kr:
+      service-key: ${BUSINESS_KEY}
+
+
+coolsms:
+  api-key: ${COOLSMS_API_KEY}
+  api-secret: ${COOLSMS_API_SECRET}
+  from-number: ${COOLSMS_FROM_NUMBER}
+
+toss:
+  payments:
+    secret-key: ${TOSS_SECRET_KEY}
+    base-url: ${TOSS_BASE_URL}
+    client-key: ${TOSS_CLIENT_KEY}
+    success-url: ${TOSS_SUCCESS_URL}
+    fail-url: ${TOSS_FAIL_URL}
