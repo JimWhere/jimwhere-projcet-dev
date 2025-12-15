@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jimwhere-backend
+  namespace: jimwhere
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jimwhere-backend
+  template:
+    metadata:
+      labels:
+        app: jimwhere-backend
+    spec:
+      containers:
+        - name: backend
+          image: docker.io/kimsangjaedocker/jimwhere-backend:dev
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8088
+          env:
+              - name: SERVER_PORT
+                value: "8088"
+          envFrom:
+            - configMapRef:
+                name: jimwhere-config
+            - secretRef:
+                name: jimwhere-secret

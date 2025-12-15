@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jimwhere-frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: jimwhere-frontend
+  ports:
+    - port: 80
+      targetPort: 80

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jimwhere-frontend
+  labels:
+    app: jimwhere-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jimwhere-frontend
+  template:
+    metadata:
+      labels:
+        app: jimwhere-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: kimsangjaedocker/jimwhere-front:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
