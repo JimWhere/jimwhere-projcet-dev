@@ -1,0 +1,24 @@
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
+import '@/assets/shared/styles/theme.css'
+
+import App from './App.vue'
+import router from './router'
+import { useAuthStore } from '@/stores/authStore'
+
+const app = createApp(App)
+
+const pinia = createPinia()
+
+app.use(ElementPlus)
+app.use(pinia)
+app.use(router)
+
+
+const authStore = useAuthStore()
+authStore.loadFromStorage()
+
+app.mount('#app')
